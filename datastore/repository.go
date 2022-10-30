@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"github.com/tonymj76/video-annotator/model"
+	"time"
 )
 
 const (
@@ -23,6 +24,7 @@ type Repository interface {
 	CreateAnnotationByID(*gin.Context, *model.AnnotationSegments) (string, error)
 	DeleteVideo(ctx *gin.Context) (string, error)
 	DeleteAnnotationByID(ctx *gin.Context) (string, error)
+	UpdateAnnotationByID(*gin.Context, *model.AnnotatedSegment) (string, error)
 }
 
 func (d *DBStore) Create(ctx *gin.Context, video *model.AnnotatedVideo) (*model.AnnotatedVideo, error) {
@@ -128,6 +130,23 @@ func (d *DBStore) CreateAnnotationByID(ctx *gin.Context, segments *model.Annotat
 	}
 
 	return fmt.Sprintf("%v Annotation(s) created", len(ids)), nil
+}
+
+func (d *DBStore) UpdateAnnotationByID(ctx *gin.Context, anno *model.AnnotatedSegment) (string, error) {
+	annotationID := ctx.Param("annotationID")
+	_, err := d.SQLBuilder.Update(
+		annotation,
+	).SetMap(
+		map[string]interface{}{
+			"start":      anno.Start,
+			"end_time":   anno.End,
+			"metadata":   anno.Metadata,
+			"updated_at": time.Now(),
+		},
+	).Where(
+		squirrel.Eq{"id": annotationID},
+	).ExecContext(ctx)
+	return "updated successfully", err
 }
 
 func (d *DBStore) DeleteVideo(ctx *gin.Context) (string, error) {

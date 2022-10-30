@@ -7,7 +7,7 @@ import (
 	"reflect"
 )
 
-func ValidateData(vs *model.AnnotatedVideo, sg model.AnnotationSegments) error {
+func ValidateManyData(vs *model.AnnotatedVideo, sg model.AnnotationSegments) error {
 	duration := vs.Duration
 	schema := vs.Schema
 	for _, segment := range sg.Annotations {
@@ -18,6 +18,19 @@ func ValidateData(vs *model.AnnotatedVideo, sg model.AnnotationSegments) error {
 		if err := checkMetaData(segment.Metadata, schema.Fields.Segments); err != nil {
 			return err
 		}
+	}
+	return nil
+}
+
+func ValidateOneData(vs *model.AnnotatedVideo, ag model.AnnotatedSegment) error {
+	duration := vs.Duration
+	schema := vs.Schema
+	if err := checkStartAndEndSec(duration, ag.Start, ag.End); err != nil {
+		return err
+	}
+
+	if err := checkMetaData(ag.Metadata, schema.Fields.Segments); err != nil {
+		return err
 	}
 	return nil
 }

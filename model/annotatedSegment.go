@@ -10,7 +10,7 @@ type AnnotatedSegment struct {
 	// The starting position of the segment (in seconds)
 	Id int `json:",omitempty"`
 
-	VideoSchemaId int `json:"video_schema_id,omitempty" binding:"required"`
+	VideoSchemaId int `json:"video_schema_id,omitempty"`
 
 	Start float64 `json:"start" binding:"required"`
 

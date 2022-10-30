@@ -21,6 +21,7 @@ func Router() (*gin.Engine, error) {
 
 	router.POST("/video", service.CreateVideo)
 	router.POST("/video/:id/annotation", service.CreateAnnotation)
+	router.PATCH("/video/:id/annotation/:annotationID", service.UpdateAnnotation)
 	router.GET("/video", service.FetchVideos)
 	router.GET("/video/:id", service.FetchVideo)
 	router.GET("/annotation/:annotationID", service.FetchAnnotationByID)

@@ -87,11 +87,34 @@ func (rs *RESTServices) CreateAnnotation(ctx *gin.Context) {
 		JSON(ctx, "failed", http.StatusBadRequest, err)
 		return
 	}
-	if err := utility.ValidateData(videoSchema, segments); err != nil {
+	if err := utility.ValidateManyData(videoSchema, segments); err != nil {
 		JSON(ctx, "failed to validate Annotation", http.StatusBadRequest, err)
 		return
 	}
 	result, err := rs.repository.CreateAnnotationByID(ctx, &segments)
+	if err != nil {
+		JSON(ctx, "failed to save segment", http.StatusBadRequest, err)
+		return
+	}
+	JSON(ctx, "success", http.StatusCreated, result)
+}
+
+func (rs *RESTServices) UpdateAnnotation(ctx *gin.Context) {
+	videoSchema, err := rs.repository.FetchVideoByID(ctx)
+	if err != nil {
+		JSON(ctx, "failed to fetch videos", http.StatusInternalServerError, err)
+		return
+	}
+	var segment model.AnnotatedSegment
+	if err := utility.ReadJSON(ctx, &segment); err != nil {
+		JSON(ctx, "failed", http.StatusBadRequest, err)
+		return
+	}
+	if err := utility.ValidateOneData(videoSchema, segment); err != nil {
+		JSON(ctx, "failed to validate Annotation", http.StatusBadRequest, err)
+		return
+	}
+	result, err := rs.repository.UpdateAnnotationByID(ctx, &segment)
 	if err != nil {
 		JSON(ctx, "failed to save segment", http.StatusBadRequest, err)
 		return
