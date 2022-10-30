@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS video_schema CASCADE;
+DROP TABLE IF EXISTS segment;
