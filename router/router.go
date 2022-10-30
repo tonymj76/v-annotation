@@ -13,6 +13,7 @@ func Router() (*gin.Engine, error) {
 	//	return nil, err
 	//}
 	router.Use(AuthAPIKey())
+	router.MaxMultipartMemory = 15 << 20 // 15 MiB
 	db, err := datastore.NewDBStore(logrus.New())
 
 	if err != nil {
@@ -21,6 +22,7 @@ func Router() (*gin.Engine, error) {
 	service := rest_service.NewRESTServices(db)
 
 	router.POST("/video", service.CreateVideo)
+	router.POST("/video-from-disk", service.CreateVideoFromDisk)
 	router.POST("/video/:id/annotation", service.CreateAnnotation)
 	router.PATCH("/video/:id/annotation/:annotationID", service.UpdateAnnotation)
 	router.GET("/video", service.FetchVideos)
@@ -29,6 +31,5 @@ func Router() (*gin.Engine, error) {
 	router.GET("/video/:id/annotation", service.FetchAnnotations)
 	router.DELETE("/video/:id", service.DeleteVideo)
 	router.DELETE("/annotation/:id", service.DeleteAnnotationByID)
-
 	return router, nil
 }

@@ -1,11 +1,13 @@
 package rest_service
 
 import (
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/tonymj76/video-annotator/datastore"
 	"github.com/tonymj76/video-annotator/model"
 	"github.com/tonymj76/video-annotator/utility"
 	"net/http"
+	"net/url"
 )
 
 // RESTServices app services
@@ -28,7 +30,12 @@ func (rs *RESTServices) CreateVideo(ctx *gin.Context) {
 		JSON(ctx, "failed", http.StatusBadRequest, err)
 		return
 	}
-	videoDetails, err := utility.NewVideoDetails(schema.VideoLink)
+	url, err := url.Parse(schema.VideoLink)
+	if err != nil {
+		JSON(ctx, "invalid video Link", http.StatusBadRequest, err)
+		return
+	}
+	videoDetails, err := utility.NewVideoDetails(url.String())
 	if err != nil {
 		JSON(ctx, "failed to get video details", http.StatusBadRequest, err)
 		return
@@ -149,4 +156,44 @@ func (rs *RESTServices) DeleteAnnotationByID(ctx *gin.Context) {
 		return
 	}
 	JSON(ctx, "success", http.StatusOK, value)
+}
+
+// CreateVideoFromDisk creates video schemas from form data
+func (rs *RESTServices) CreateVideoFromDisk(ctx *gin.Context) {
+	var annoSchema model.AnnotatedVideo
+	videoFile, err := ctx.FormFile("videFile")
+	if err != nil {
+		JSON(ctx, "failed", http.StatusBadRequest, err)
+		return
+	}
+	annoSchema.VideoLink = videoFile.Filename
+	schemaFile, err := ctx.FormFile("schemaFile")
+	if err != nil {
+		JSON(ctx, "failed", http.StatusBadRequest, err)
+		return
+	}
+	video, err := utility.ReadFileHeader(videoFile)
+
+	if err != nil {
+		JSON(ctx, "failed", http.StatusBadRequest, err)
+		return
+	}
+	schema, err := utility.ReadFileHeader(schemaFile)
+	if err := json.Unmarshal(schema, &annoSchema.Schema); err != nil {
+		JSON(ctx, "failed", http.StatusBadRequest, err)
+		return
+	}
+	vd, err := utility.GetVideoDetailsFromByte(video)
+	if err != nil {
+		JSON(ctx, "failed", http.StatusBadRequest, err)
+		return
+	}
+	annoSchema.Duration = vd.Duration
+	annoSchema.FrameRate = vd.Framerate
+	savedSchema, err := rs.repository.Create(ctx, &annoSchema)
+	if err != nil {
+		JSON(ctx, "failed to save video details", http.StatusBadRequest, err)
+		return
+	}
+	JSON(ctx, "success", http.StatusCreated, savedSchema)
 }

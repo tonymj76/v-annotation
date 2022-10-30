@@ -5,6 +5,7 @@ import (
 	"fmt"
 	mediainfo "github.com/zhulik/go_mediainfo"
 	"io/ioutil"
+	"mime/multipart"
 	"strconv"
 )
 
@@ -42,8 +43,23 @@ func NewVideoDetails(videoLink string) (*VideoDetails, error) {
 	}, nil
 }
 
-func CalcDurationStringToSeconds(t, unit string) (float64, error) {
+// GetVideoDetailsFromByte _
+func GetVideoDetailsFromByte(bytes []byte) (*VideoDetails, error) {
+	mi := mediainfo.NewMediaInfo()
+	err := mi.OpenMemory(bytes)
 
+	if err != nil {
+		return nil, err
+	}
+	framerate, err := CalcDurationStringToSeconds(mi.Get("FrameRate"), "s")
+	duration, err := CalcDurationStringToSeconds(mi.Get("Duration"), "ms")
+	return &VideoDetails{
+		Framerate: framerate,
+		Duration:  duration,
+	}, nil
+}
+
+func CalcDurationStringToSeconds(t, unit string) (float64, error) {
 	switch unit {
 	case "ms":
 		msec, err := strconv.ParseFloat(t, 64)
@@ -55,5 +71,14 @@ func CalcDurationStringToSeconds(t, unit string) (float64, error) {
 	default:
 		return 0, errors.New(fmt.Sprintf("unknown unit %s in duration", unit))
 	}
+
+}
+
+func ReadFileHeader(file *multipart.FileHeader) ([]byte, error) {
+	item, err := file.Open()
+	if err != nil {
+		return nil, err
+	}
+	return ioutil.ReadAll(item)
 
 }
