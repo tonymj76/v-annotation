@@ -3,7 +3,7 @@ DBINST:=video_db
 MIGRATEPATH:=datastore/migrations
 
 mock:
-	@mockgen -source=./datastore/repository.go -destination=./rest_services/mock.go -package=rest_services
+	@mockgen -source=./datastore/repository.go -destination=./rest_service/mock.go -package=rest_service
 migrate_sql:
 	migrate create -ext sql -dir ${MIGRATEPATH} -seq  annotation_schema
 
