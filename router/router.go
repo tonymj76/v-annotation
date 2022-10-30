@@ -12,6 +12,7 @@ func Router() (*gin.Engine, error) {
 	//if err := router.SetTrustedProxies([]string{"127.0.0.1"}); err != nil {
 	//	return nil, err
 	//}
+	router.Use(AuthAPIKey())
 	db, err := datastore.NewDBStore(logrus.New())
 
 	if err != nil {
