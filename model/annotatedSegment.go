@@ -9,9 +9,10 @@ import (
 type AnnotatedSegment struct {
 	// The starting position of the segment (in seconds)
 	Id int `json:",omitempty"`
-
+	// The video id
 	VideoSchemaId int `json:"video_schema_id,omitempty"`
 
+	// The start position of the segment (in seconds)
 	Start float64 `json:"start" binding:"required"`
 
 	// The ending position of the segment (in seconds)
@@ -21,6 +22,7 @@ type AnnotatedSegment struct {
 	Metadata MetaData `json:"metadata"`
 }
 
+// AnnotationSegments add multiple annotations
 type AnnotationSegments struct {
 	Annotations []AnnotatedSegment `json:"annotations" binding:"required"`
 }

@@ -7,11 +7,12 @@ import (
 	"reflect"
 )
 
+//ValidateManyData validate input request
 func ValidateManyData(vs *model.AnnotatedVideo, sg model.AnnotationSegments) error {
 	duration := vs.Duration
 	schema := vs.Schema
 	for _, segment := range sg.Annotations {
-		if err := checkStartAndEndSec(duration, segment.Start, segment.End); err != nil {
+		if err := checkStartAndEndTime(duration, segment.Start, segment.End); err != nil {
 			return err
 		}
 
@@ -22,10 +23,11 @@ func ValidateManyData(vs *model.AnnotatedVideo, sg model.AnnotationSegments) err
 	return nil
 }
 
+//ValidateOneData validate input request
 func ValidateOneData(vs *model.AnnotatedVideo, ag model.AnnotatedSegment) error {
 	duration := vs.Duration
 	schema := vs.Schema
-	if err := checkStartAndEndSec(duration, ag.Start, ag.End); err != nil {
+	if err := checkStartAndEndTime(duration, ag.Start, ag.End); err != nil {
 		return err
 	}
 
@@ -35,7 +37,8 @@ func ValidateOneData(vs *model.AnnotatedVideo, ag model.AnnotatedSegment) error 
 	return nil
 }
 
-func checkStartAndEndSec(d, s, e float64) error {
+// start and end time in seconds should not be less than or greater than video duration
+func checkStartAndEndTime(d, s, e float64) error {
 	if s < 0 {
 		return errors.New("start time can't be negative number")
 	}
@@ -45,6 +48,7 @@ func checkStartAndEndSec(d, s, e float64) error {
 	return nil
 }
 
+// check if the metadata of the schema is observed
 func checkMetaData(m map[string]any, fields []model.SchemaField) error {
 	for _, field := range fields {
 		value, ok := m[field.Name]

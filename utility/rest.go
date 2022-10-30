@@ -12,6 +12,7 @@ import (
 
 var ErrEmptyBody = errors.New("body must not be empty")
 
+//ReadJSON parse request body to json and check for errors
 func ReadJSON(c *gin.Context, dst any) error {
 	var syntaxError *json.SyntaxError
 	var unmarshalTypeError *json.UnmarshalTypeError

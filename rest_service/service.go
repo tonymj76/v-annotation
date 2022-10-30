@@ -8,16 +8,19 @@ import (
 	"net/http"
 )
 
+// RESTServices app services
 type RESTServices struct {
 	repository datastore.Repository
 }
 
+// NewRESTServices create app services and link it to db
 func NewRESTServices(datastore datastore.Repository) *RESTServices {
 	return &RESTServices{
 		repository: datastore,
 	}
 }
 
+// CreateVideo creates Video and its metadata
 func (rs *RESTServices) CreateVideo(ctx *gin.Context) {
 	//s, _ := rs.repository.Create(ctx)
 	var schema model.AnnotatedVideo
@@ -40,6 +43,7 @@ func (rs *RESTServices) CreateVideo(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusCreated, savedSchema)
 }
 
+// FetchVideos gets all videos and its metadata
 func (rs *RESTServices) FetchVideos(ctx *gin.Context) {
 	videoSchema, err := rs.repository.FetchVideos(ctx)
 	if err != nil {
@@ -49,6 +53,7 @@ func (rs *RESTServices) FetchVideos(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusOK, videoSchema)
 }
 
+// FetchVideo get a video and its metadata
 func (rs *RESTServices) FetchVideo(ctx *gin.Context) {
 	videoSchema, err := rs.repository.FetchVideoByID(ctx)
 	if err != nil {
@@ -58,6 +63,7 @@ func (rs *RESTServices) FetchVideo(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusOK, videoSchema)
 }
 
+// FetchAnnotationByID get annotation and its metadata
 func (rs *RESTServices) FetchAnnotationByID(ctx *gin.Context) {
 	segment, err := rs.repository.FetchAnnotationByID(ctx)
 	if err != nil {
@@ -67,6 +73,7 @@ func (rs *RESTServices) FetchAnnotationByID(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusOK, segment)
 }
 
+//FetchAnnotations get annotations and its metadata
 func (rs *RESTServices) FetchAnnotations(ctx *gin.Context) {
 	segments, err := rs.repository.FetchAnnotations(ctx)
 	if err != nil {
@@ -76,6 +83,7 @@ func (rs *RESTServices) FetchAnnotations(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusOK, segments)
 }
 
+//CreateAnnotation create annotation and its metadata
 func (rs *RESTServices) CreateAnnotation(ctx *gin.Context) {
 	videoSchema, err := rs.repository.FetchVideoByID(ctx)
 	if err != nil {
@@ -99,6 +107,7 @@ func (rs *RESTServices) CreateAnnotation(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusCreated, result)
 }
 
+// UpdateAnnotation updates annotation and it's metadata
 func (rs *RESTServices) UpdateAnnotation(ctx *gin.Context) {
 	videoSchema, err := rs.repository.FetchVideoByID(ctx)
 	if err != nil {
@@ -122,6 +131,7 @@ func (rs *RESTServices) UpdateAnnotation(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusCreated, result)
 }
 
+// DeleteVideo delete a Video
 func (rs *RESTServices) DeleteVideo(ctx *gin.Context) {
 	value, err := rs.repository.DeleteVideo(ctx)
 	if err != nil {
@@ -131,6 +141,7 @@ func (rs *RESTServices) DeleteVideo(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusOK, value)
 }
 
+// DeleteAnnotationByID delete annotation by id
 func (rs *RESTServices) DeleteAnnotationByID(ctx *gin.Context) {
 	value, err := rs.repository.DeleteAnnotationByID(ctx)
 	if err != nil {

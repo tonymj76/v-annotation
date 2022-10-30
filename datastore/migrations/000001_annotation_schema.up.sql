@@ -21,5 +21,7 @@ CREATE TABLE "annotation" (
 );
 
 
-ALTER TABLE "annotation" ADD FOREIGN KEY ("video_schema_id") REFERENCES "video_schema" ("id");
+ALTER TABLE "annotation" ADD FOREIGN KEY ("video_schema_id")
+    REFERENCES "video_schema" ("id")
+    on delete cascade ON UPDATE NO ACTION;
 
