@@ -1,0 +1,11 @@
+title="Configuration File for videoAnno"
+debug=true
+contextTimeout="2"
+[server]
+  address= ":9090"
+[database]
+  host="video_db"
+  port="5439"
+  user="root"
+  pass="password"
+  name="annotation"

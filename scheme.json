@@ -1,0 +1,23 @@
+{
+    "fields": {
+        "segments": [
+            {
+                "name": "FieldName1",
+                "type": "bool"
+            },
+            {
+                "name": "FieldName2",
+                "type": "string",
+                "values": [
+                    "new bread",
+                    "cute img",
+                    "what breed"
+                ]
+            },
+            {
+                "name": "FieldName3",
+                "type": "int"
+            }
+        ]
+    }
+} 

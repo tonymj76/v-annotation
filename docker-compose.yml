@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  video_api:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    container_name: video_api
+#    command: ["./create-env.sh", "--", "air", "-c", ".air.toml"]
+    depends_on:
+      - video_db
+    networks:
+      - backend
+    environment:
+      - HOST=${HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - DB_PORT=5432
+    ports:
+      - "9191:9090"
+    volumes:
+      - ./:/app
+
+  video_db:
+    image: postgres:12-alpine
+    container_name: video_db
+    env_file: .env
+    restart: always
+    networks:
+      - backend
+    ports:
+      - "5439:5432"
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - db-data:/data/postgres
+networks:
+  backend:
+
+volumes:
+  db-data:
+    driver: local
