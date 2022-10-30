@@ -10,7 +10,7 @@ import (
 func ValidateData(vs *model.AnnotatedVideo, sg model.AnnotationSegments) error {
 	duration := vs.Duration
 	schema := vs.Schema
-	for _, segment := range sg.Segments {
+	for _, segment := range sg.Annotations {
 		if err := checkStartAndEndSec(duration, segment.Start, segment.End); err != nil {
 			return err
 		}

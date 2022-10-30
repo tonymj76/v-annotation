@@ -20,13 +20,13 @@ func Router() (*gin.Engine, error) {
 	service := rest_service.NewRESTServices(db)
 
 	router.POST("/video", service.CreateVideo)
-	router.POST("/video/:id/segment", service.CreateSegment)
+	router.POST("/video/:id/annotation", service.CreateAnnotation)
 	router.GET("/video", service.FetchVideos)
 	router.GET("/video/:id", service.FetchVideo)
-	router.GET("/segment/:segmentID", service.FetchSegmentByID)
-	router.GET("/video/:id/segment", service.FetchSegments)
+	router.GET("/annotation/:annotationID", service.FetchAnnotationByID)
+	router.GET("/video/:id/annotation", service.FetchAnnotations)
 	router.DELETE("/video/:id", service.DeleteVideo)
-	router.DELETE("/segment/:id", service.DeleteSegmentByID)
+	router.DELETE("/annotation/:id", service.DeleteAnnotationByID)
 
 	return router, nil
 }

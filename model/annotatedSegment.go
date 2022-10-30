@@ -22,7 +22,7 @@ type AnnotatedSegment struct {
 }
 
 type AnnotationSegments struct {
-	Segments []AnnotatedSegment `json:"segments" binding:"required"`
+	Annotations []AnnotatedSegment `json:"annotations" binding:"required"`
 }
 
 type MetaData map[string]any

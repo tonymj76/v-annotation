@@ -10,7 +10,7 @@ CREATE TABLE "video_schema" (
                                 "updated_at" timestamptz
 );
 
-CREATE TABLE "segment" (
+CREATE TABLE "annotation" (
                            "id" bigserial PRIMARY KEY,
                            "video_schema_id" bigserial,
                            "start" float,
@@ -21,5 +21,5 @@ CREATE TABLE "segment" (
 );
 
 
-ALTER TABLE "segment" ADD FOREIGN KEY ("video_schema_id") REFERENCES "video_schema" ("id");
+ALTER TABLE "annotation" ADD FOREIGN KEY ("video_schema_id") REFERENCES "video_schema" ("id");
 

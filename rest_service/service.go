@@ -58,8 +58,8 @@ func (rs *RESTServices) FetchVideo(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusOK, videoSchema)
 }
 
-func (rs *RESTServices) FetchSegmentByID(ctx *gin.Context) {
-	segment, err := rs.repository.FetchSegmentByID(ctx)
+func (rs *RESTServices) FetchAnnotationByID(ctx *gin.Context) {
+	segment, err := rs.repository.FetchAnnotationByID(ctx)
 	if err != nil {
 		JSON(ctx, "failed to fetch segments", http.StatusInternalServerError, err)
 		return
@@ -67,16 +67,16 @@ func (rs *RESTServices) FetchSegmentByID(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusOK, segment)
 }
 
-func (rs *RESTServices) FetchSegments(ctx *gin.Context) {
-	segments, err := rs.repository.FetchSegments(ctx)
+func (rs *RESTServices) FetchAnnotations(ctx *gin.Context) {
+	segments, err := rs.repository.FetchAnnotations(ctx)
 	if err != nil {
-		JSON(ctx, "failed to fetch segments", http.StatusInternalServerError, err)
+		JSON(ctx, "failed to fetch Annotation", http.StatusInternalServerError, err)
 		return
 	}
 	JSON(ctx, "success", http.StatusOK, segments)
 }
 
-func (rs *RESTServices) CreateSegment(ctx *gin.Context) {
+func (rs *RESTServices) CreateAnnotation(ctx *gin.Context) {
 	videoSchema, err := rs.repository.FetchVideoByID(ctx)
 	if err != nil {
 		JSON(ctx, "failed to fetch videos", http.StatusInternalServerError, err)
@@ -88,10 +88,10 @@ func (rs *RESTServices) CreateSegment(ctx *gin.Context) {
 		return
 	}
 	if err := utility.ValidateData(videoSchema, segments); err != nil {
-		JSON(ctx, "failed to validate segments", http.StatusBadRequest, err)
+		JSON(ctx, "failed to validate Annotation", http.StatusBadRequest, err)
 		return
 	}
-	result, err := rs.repository.CreateSegmentByID(ctx, &segments)
+	result, err := rs.repository.CreateAnnotationByID(ctx, &segments)
 	if err != nil {
 		JSON(ctx, "failed to save segment", http.StatusBadRequest, err)
 		return
@@ -108,10 +108,10 @@ func (rs *RESTServices) DeleteVideo(ctx *gin.Context) {
 	JSON(ctx, "success", http.StatusOK, value)
 }
 
-func (rs *RESTServices) DeleteSegmentByID(ctx *gin.Context) {
-	value, err := rs.repository.DeleteSegmentByID(ctx)
+func (rs *RESTServices) DeleteAnnotationByID(ctx *gin.Context) {
+	value, err := rs.repository.DeleteAnnotationByID(ctx)
 	if err != nil {
-		JSON(ctx, "failed to delete segment", http.StatusBadRequest, err)
+		JSON(ctx, "failed to delete Annotation", http.StatusBadRequest, err)
 		return
 	}
 	JSON(ctx, "success", http.StatusOK, value)

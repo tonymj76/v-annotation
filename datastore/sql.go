@@ -64,7 +64,7 @@ func scanRows(row squirrel.RowScanner) (*model.AnnotatedVideo, error) {
 	return &an, nil
 }
 
-func scanSegmentRows(row squirrel.RowScanner) (*model.AnnotatedSegment, error) {
+func scanAnnotationRows(row squirrel.RowScanner) (*model.AnnotatedSegment, error) {
 	var as model.AnnotatedSegment
 	err := row.Scan(
 		&as.Id,
