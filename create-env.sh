@@ -8,6 +8,7 @@ echo  SESSION_SECRET="$SECRET" > .env
   echo  DB_PASSWORD="password"
   echo  DB_NAME="annotation"
   echo  HOST="video_db"
+  echo  DB_PORT="5432"
 } >> .env
 
 echo "$SECRET"
