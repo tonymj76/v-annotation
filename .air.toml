@@ -7,7 +7,7 @@ tmp_dir = "tmp"
 
 [build]
 
-cmd = "go build -o ./tmp/app/engine ."
+cmd = "go build -o ./tmp/app/engine ./cmd/main.go"
 # Binary file yields from `cmd`.
 bin = "tmp/app"
 
