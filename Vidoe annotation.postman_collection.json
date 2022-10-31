@@ -1,0 +1,687 @@
+{
+	"info": {
+		"_postman_id": "91278ad7-45d9-4da4-8d64-7654a0a7ec9a",
+		"name": "Vidoe annotation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6007854"
+	},
+	"item": [
+		{
+			"name": "get video from cdn",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "uHwwE7nkINk7AyC53GF5XQGJzpq9FwFjFIjzJltTFu1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sandbox.api.video/videos",
+					"protocol": "https",
+					"host": [
+						"sandbox",
+						"api",
+						"video"
+					],
+					"path": [
+						"videos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get video from cdn",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://cdn.api.video/vod/viqyDj9tTG4LmwTJuwf7LS9/mp4/source.mp4",
+							"protocol": "https",
+							"host": [
+								"cdn",
+								"api",
+								"video"
+							],
+							"path": [
+								"vod",
+								"viqyDj9tTG4LmwTJuwf7LS9",
+								"mp4",
+								"source.mp4"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "video from cloud provider",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cdn.api.video/vod/viqyDj9tTG4LmwTJuwf7LS9/mp4/source.mp4",
+					"protocol": "https",
+					"host": [
+						"cdn",
+						"api",
+						"video"
+					],
+					"path": [
+						"vod",
+						"viqyDj9tTG4LmwTJuwf7LS9",
+						"mp4",
+						"source.mp4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post video",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"video_link\": \"https://cdn.api.video/vod/vi2HJNyF8Lv30H1BpKC3ryMc/mp4/source.mp4\",\n    \"schema\": {\n        \"fields\": {\n            \"segments\": [\n                {\n                    \"name\": \"FieldName1\",\n                    \"type\": \"bool\"\n                },\n                {\n                    \"name\": \"FieldName2\",\n                    \"type\": \"string\",\n                    \"values\": [\n                        \"new bread\",\n                        \"cute img\",\n                        \"what breed\"\n                    ]\n                },\n                {\n                    \"name\": \"FieldName3\",\n                    \"type\": \"int\"\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/video",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"video"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "post video",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"video_link\": \"https://cdn.api.video/vod/vi2HJNyF8Lv30H1BpKC3ryMc/mp4/source.mp4\",\n    \"schema\": {\n        \"fields\": {\n            \"segments\": [\n                {\n                    \"name\": \"FieldName1\",\n                    \"type\": \"bool\"\n                },\n                {\n                    \"name\": \"FieldName2\",\n                    \"type\": \"string\",\n                    \"values\": [\n                        \"new bread\",\n                        \"cute img\",\n                        \"what breed\"\n                    ]\n                },\n                {\n                    \"name\": \"FieldName3\",\n                    \"type\": \"int\"\n                }\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/video",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"video"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 30 Oct 2022 00:46:25 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "392"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"1\",\n        \"video_link\": \"https://cdn.api.video/vod/vi2HJNyF8Lv30H1BpKC3ryMc/mp4/source.mp4\",\n        \"duration\": 30.001,\n        \"frame_rate\": 25,\n        \"schema\": {\n            \"fields\": {\n                \"segments\": [\n                    {\n                        \"name\": \"FieldName1\",\n                        \"type\": \"bool\",\n                        \"values\": null\n                    },\n                    {\n                        \"name\": \"FieldName2\",\n                        \"type\": \"string\",\n                        \"values\": [\n                            \"new bread\",\n                            \"cute img\",\n                            \"what breed\"\n                        ]\n                    },\n                    {\n                        \"name\": \"FieldName3\",\n                        \"type\": \"int\",\n                        \"values\": null\n                    }\n                ]\n            }\n        }\n    },\n    \"message\": \"success\",\n    \"status\": \"Created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get videos",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "ZtBHHYH7LBGEjdFaHY7VMvFSDIu2Bs+cL1VZU2Ntrr0=",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/video",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"video"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get videos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/video",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"video"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 30 Oct 2022 00:47:25 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "389"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"video_link\": \"https://cdn.api.video/vod/vi2HJNyF8Lv30H1BpKC3ryMc/mp4/source.mp4\",\n            \"duration\": 30.001,\n            \"frame_rate\": 25,\n            \"schema\": {\n                \"fields\": {\n                    \"segments\": [\n                        {\n                            \"name\": \"FieldName1\",\n                            \"type\": \"bool\",\n                            \"values\": null\n                        },\n                        {\n                            \"name\": \"FieldName2\",\n                            \"type\": \"string\",\n                            \"values\": [\n                                \"new bread\",\n                                \"cute img\",\n                                \"what breed\"\n                            ]\n                        },\n                        {\n                            \"name\": \"FieldName3\",\n                            \"type\": \"int\",\n                            \"values\": null\n                        }\n                    ]\n                }\n            }\n        }\n    ],\n    \"message\": \"success\",\n    \"status\": \"OK\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add annotations",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"annotations\": [\n        {\n            \"start\": 0.28,\n            \"end\": 6.76,\n            \"metadata\": {\n                \"FieldName1\": true,\n                \"FieldName2\": \"what breed\",\n                \"FieldName3\": 3\n            }\n        },\n        {\n            \"start\": 12.8,\n            \"end\": 18.48,\n            \"metadata\": {\n                \"FieldName1\": true,\n                \"FieldName2\": \"cute img\",\n                \"FieldName3\": 18\n            }\n        },\n        {\n            \"start\": 21.56,\n            \"end\": 30.001,\n            \"metadata\": {\n                \"FieldName1\": true,\n                \"FieldName2\": \"cute img\",\n                \"FieldName3\": 28\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/video/1/annotation",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"video",
+						"1",
+						"annotation"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "add annotations",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"annotations\": [\n        {\n            \"start\": 0.28,\n            \"end\": 6.76,\n            \"metadata\": {\n                \"FieldName1\": true,\n                \"FieldName2\": \"what breed\",\n                \"FieldName3\": 3\n            }\n        },\n        {\n            \"start\": 12.8,\n            \"end\": 18.48,\n            \"metadata\": {\n                \"FieldName1\": true,\n                \"FieldName2\": \"cute img\",\n                \"FieldName3\": 18\n            }\n        },\n        {\n            \"start\": 21.56,\n            \"end\": 30.001,\n            \"metadata\": {\n                \"FieldName1\": true,\n                \"FieldName2\": \"cute img\",\n                \"FieldName3\": 28\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/video/1/annotation",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"video",
+								"1",
+								"annotation"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 30 Oct 2022 02:59:44 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "73"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"3 Annotation(s) created\",\n    \"message\": \"success\",\n    \"status\": \"Created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "delet video",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "ZtBHHYH7LBGEjdFaHY7VMvFSDIu2Bs+cL1VZU2Ntrr0=",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/video/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"video",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete annotation",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/annotation/3",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"annotation",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get annotation by id",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "ZtBHHYH7LBGEjdFaHY7VMvFSDIu2Bs+cL1VZU2Ntrr0=",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/annotation/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"annotation",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get segment by annotation id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/annotation/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"annotation",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 30 Oct 2022 03:02:33 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "167"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"Id\": 1,\n        \"video_schema_id\": 1,\n        \"start\": 0.28,\n        \"end\": 6.76,\n        \"metadata\": {\n            \"FieldName1\": true,\n            \"FieldName2\": \"what breed\",\n            \"FieldName3\": 3\n        }\n    },\n    \"message\": \"success\",\n    \"status\": \"OK\"\n}"
+				}
+			]
+		},
+		{
+			"name": "get annotation id of all videos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/video/1/annotation",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"video",
+						"1",
+						"annotation"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get annotation id of all videos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/video/1/annotation",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"video",
+								"1",
+								"annotation"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 30 Oct 2022 03:03:04 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "294"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"Id\": 1,\n            \"video_schema_id\": 1,\n            \"start\": 0.28,\n            \"end\": 6.76,\n            \"metadata\": {\n                \"FieldName1\": true,\n                \"FieldName2\": \"what breed\",\n                \"FieldName3\": 3\n            }\n        },\n        {\n            \"Id\": 2,\n            \"video_schema_id\": 1,\n            \"start\": 12.8,\n            \"end\": 18.48,\n            \"metadata\": {\n                \"FieldName1\": true,\n                \"FieldName2\": \"cute img\",\n                \"FieldName3\": 18\n            }\n        }\n    ],\n    \"message\": \"success\",\n    \"status\": \"OK\"\n}"
+				}
+			]
+		},
+		{
+			"name": "update annotation",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"start\": 0.28,\n    \"end\": 0.76,\n    \"metadata\": {\n        \"FieldName1\": false,\n        \"FieldName2\": \"what breed\",\n        \"FieldName3\": 89\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/video/1/annotation/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"video",
+						"1",
+						"annotation",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update annotation",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"start\": 0.28,\n    \"end\": 0.76,\n    \"metadata\": {\n        \"FieldName1\": false,\n        \"FieldName2\": \"what breed\",\n        \"FieldName3\": 89\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/video/1/annotation/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"video",
+								"1",
+								"annotation",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 30 Oct 2022 03:42:30 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "70"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"updated successfully\",\n    \"message\": \"success\",\n    \"status\": \"Created\"\n}"
+				}
+			]
+		},
+		{
+			"name": "create video from disk",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "ZtBHHYH7LBGEjdFaHY7VMvFSDIu2Bs+cL1VZU2Ntrr0=",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "X-API-Key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "videFile",
+							"type": "file",
+							"src": "/Users/tonymj/Movies/send this video to someone you love......mp4"
+						},
+						{
+							"key": "schemaFile",
+							"type": "file",
+							"src": "/Users/tonymj/dev/personal_/video_annotator_api/scheme.json"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/video-from-disk",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"video-from-disk"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "create video from disk",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "videFile",
+									"type": "file",
+									"src": "/Users/tonymj/Movies/send this video to someone you love......mp4"
+								},
+								{
+									"key": "schemaFile",
+									"type": "file",
+									"src": "/Users/tonymj/dev/personal_/video_annotator_api/scheme.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/video-from-disk",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"video-from-disk"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 30 Oct 2022 05:18:41 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "372"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"2\",\n        \"video_link\": \"send this video to someone you love......mp4\",\n        \"duration\": 186.782,\n        \"frame_rate\": 25,\n        \"schema\": {\n            \"fields\": {\n                \"segments\": [\n                    {\n                        \"name\": \"FieldName1\",\n                        \"type\": \"bool\",\n                        \"values\": null\n                    },\n                    {\n                        \"name\": \"FieldName2\",\n                        \"type\": \"string\",\n                        \"values\": [\n                            \"new bread\",\n                            \"cute img\",\n                            \"what breed\"\n                        ]\n                    },\n                    {\n                        \"name\": \"FieldName3\",\n                        \"type\": \"int\",\n                        \"values\": null\n                    }\n                ]\n            }\n        }\n    },\n    \"message\": \"success\",\n    \"status\": \"Created\"\n}"
+				}
+			]
+		}
+	]
+}
