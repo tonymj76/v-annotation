@@ -19,4 +19,8 @@ migratedown:
 migrateup:
 	migrate -path ${MIGRATEPATH} -database "$(DB_URL)" -verbose up
 
-.PHONY: mock migrate_sql createdb dropdb migrateup migratedown
+setup:
+	chmod +x create-env.sh
+	./create-env.sh
+
+.PHONY: mock migrate_sql createdb dropdb migrateup migratedown setup
