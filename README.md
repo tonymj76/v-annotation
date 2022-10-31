@@ -13,6 +13,7 @@ application works as intended.
 ### For the Fun part and my Observation and Assumptions🙌🏽
 
 - From the Assignment which state that Videos are stored as link from a cloud storage, In Order to mimic this I created an account with `api.video` which provided video i used for my testing.
+- I also added the ability to select Videos from files with also the schemas.
 - I made sure that the video annotation start and end time are in seconds, and it's range are within the video duration which is in seconds also.
 - For Authentication once `make setup` is run a *secret key* is generated which will be use as the value and the API Key is `X-API-Key`, which is needed to add on the request header
 - In order to have a consistent meta-data I added a guidelines which I called schema which is added to guide the programmer or the computer vision on what time of meta-data are being feed into to program. for example how the schema should look like
